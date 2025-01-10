@@ -43,4 +43,8 @@ public class ArbolBinario {
             }
         }
     }
+
+    public Node getRoot() {
+        return root;
+    }
 }
