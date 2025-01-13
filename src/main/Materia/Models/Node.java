@@ -5,12 +5,14 @@ public class Node {
     private int value; 
     private Node left; 
     private Node right; 
+    private int height;
 
     // Constructor
     public Node(int value) {
         this.value = value;
-        this.left = null;
-        this.right = null;
+        //this.left = null;
+        //this.right = null;
+        this.height = 1; // Inicializamos la altura como 1 para un nodo hoja
     }
 
     // Métodos getters y setters
@@ -36,5 +38,14 @@ public class Node {
 
     public void setRight(Node right) {
         this.right = right;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    // Método para establecer la altura
+    public void setHeight(int height) {
+        this.height = height; 
     }
 }
