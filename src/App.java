@@ -1,6 +1,9 @@
 import java.util.List;
 
+import Ejercicio_01_insert.InsertBSTTest;
+import Ejercicio_02_invert.InvertBinaryTree;
 import main.Ejercicio_03_listLevels.ListLevels;
+import Ejercicio_04_depth.Depth;
 import main.Materia.Controllers.ArbolAVL;
 import main.Materia.Controllers.ArbolBinario;
 import main.Materia.Controllers.ArbolRecorridos;
@@ -9,23 +12,57 @@ import main.Materia.Models.Node;
 public class App {
     public static void main(String[] args) throws Exception {
         //runArbolBinario();
-        runArbolRecorridos();
-        runEjercicio3();
+        //runArbolRecorridos();
+        //runArbolAVL();
 
-        runArbolAVL();
+        runInsertBSTTest();
+        runInvertBinaryTree();
+        //runEjercicio3();
+        runDepth();
+
     }
 
-    private static void runArbolAVL() {
-        ArbolAVL arbolAvl = new ArbolAVL();
-        int[] values = {10, 20, 15, 24, 9, 8, 21, 23, 50, 25};
+    private static void runInsertBSTTest() {
+        InsertBSTTest bst = new InsertBSTTest();
+        Node root = null;
 
-        // Insertar cada valor al árbol
-        for (int valor : values) {
-            arbolAvl.insert(valor);
+        System.out.println("Ejercicio 1:");
+
+        // Valores de ejemplo
+        int[] values = {5, 3, 7, 2, 4, 6, 8};
+        System.out.print("Input: ");
+        System.out.println(java.util.Arrays.toString(values));
+
+        for (int value : values) {
+            root = bst.insert(root, value);
         }
 
-        // Imprimir el árbol binario
-        arbolAvl.printTree();
+        // Imprimir el árbol en formato alineado
+        System.out.println("Output:");
+        bst.printTreeAligned(root);
+    }
+
+    private static void runInvertBinaryTree() {
+        InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
+        InsertBSTTest bst = new InsertBSTTest();
+        Node root = null;
+
+        System.out.println("\nEjercicio 2:");
+
+        // Construimos el árbol con los valores
+        int[] values = {4, 2, 7, 1, 3, 6, 9}; 
+        for (int value : values) {
+            root = bst.insert(root, value);
+        }
+
+        System.out.println("Input (Árbol original):");
+        bst.printTreeAligned(root);
+
+        // Invertimos el árbol
+        root = invertBinaryTree.invertTree(root);
+
+        System.out.println("\nOutput (Árbol invertido):");
+        bst.printTreeAligned(root);
     }
 
     private static void runEjercicio3() {
@@ -37,6 +74,8 @@ public class App {
         root.getLeft().setRight(new Node(3));
         root.getRight().setLeft(new Node(6));
         root.getRight().setRight(new Node(9));
+
+        System.out.println("\nEjercicio 3:");
 
         // Imprimir el árbol como "Input"
         System.out.println("Input:");
@@ -58,6 +97,46 @@ public class App {
             }
             System.out.println();
         }
+    }
+
+    private static void runDepth() {
+        // Ejemplo del árbol
+        Node root = new Node(4);
+        root.setLeft(new Node(2));
+        root.setRight(new Node(7));
+        root.getLeft().setLeft(new Node(1));
+        root.getLeft().setRight(new Node(3));
+        root.getLeft().getLeft().setLeft(new Node(8)); 
+
+        Depth depth = new Depth();
+
+        System.out.println("\nEjercicio 4:");
+
+        // Imprimir el input
+        System.out.println("Input:");
+        depth.printInput(root);
+
+        // Calcular la profundidad máxima
+        int result = depth.maxDepth(root);
+
+        // Imprimir el output
+        System.out.println("\nOutput:");
+        System.out.println(result);
+    }
+
+    
+
+    private static void runArbolAVL() {
+        ArbolAVL arbolAvl = new ArbolAVL();
+        int[] values = {10, 20, 15, 24, 9, 8, 21, 23, 50, 25};
+
+        // Insertar cada valor al árbol
+        for (int valor : values) {
+            arbolAvl.insert(valor);
+        }
+
+        // Imprimir el árbol binario
+        arbolAvl.printTree();
     }
 
     // Método para imprimir el árbol como en la entrada
